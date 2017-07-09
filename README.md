@@ -1,2 +1,3 @@
 # p5.js-projects
-p5.js Projects
+Couple of demos and tests of p5.js library.
+
