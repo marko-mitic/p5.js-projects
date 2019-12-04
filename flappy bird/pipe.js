@@ -26,8 +26,18 @@ function Pipe(){
     this.hits = function(bird){
         if(bird.y-bird.r/2 < this.top || bird.y+bird.r/2 > height-this.bottom){
             if (bird.x+bird.r/2 > this.x && bird.x-bird.r/2 < this.x+this.w){
-                this.highlight = true;
-                return true;
+                /*above checks only for a rectangle whose center is at (this.x - bird.r/2,this.y) and a = r.
+                we calculate the distance between the centre of the bird and this.x, this.top and this.botom positions
+                assuming the circle is not hiting the rectangle. If any of those distances are greater then zero, 
+                our assumption is wrong and circle hit the rectangle
+                */
+                var dx = (this.x - bird.r/2) - bird.x;
+                var dyt = bird.y - this.top;
+                var dyb = bird.bottom - bird.y;
+                if(dx < 0 || dyt < 0 ||  dyb < 0){
+                 this.highlight = true;
+                 return true;
+                }
             }else{
                 this.highlight = false;
                 
